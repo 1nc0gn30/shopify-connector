@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shopify-connector"
+version = "1.0.0"
+description = "Autonomous Shopify GraphQL Admin API & Print-on-Demand E-Commerce Engine for Antigravity & AI Agents."
+authors = [{ name = "Neal Frazier Tech", email = "contact@nullai.tech" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+shopify-connector = "shopify_connector.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Connector — Autonomous GraphQL Admin API & Print-on-Demand E-Commerce Engine</title>
+  <meta name="description" content="Autonomous zero-dependency Shopify GraphQL Admin API connector, 1-click Etsy-to-Shopify payload transpiler, real-time profit margin calculator, and Antigravity MCP suite.">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="Shopify Connector — Autonomous GraphQL Admin API & POD Engine">
+  <meta property="og:description" content="Autonomous zero-dependency Shopify GraphQL Admin API connector, 1-click Etsy-to-Shopify payload transpiler, and profit margin calculator for AI agents.">
+  <meta property="og:url" content="https://shopify.nullai.tech/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://shopify.nullai.tech/assets/og-shopify-connector.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@1nc0gn30">
+  <meta name="twitter:creator" content="@1nc0gn30">
+  <meta name="twitter:title" content="Shopify Connector — Autonomous GraphQL Admin API & POD Engine">
+  <meta name="twitter:description" content="Unified storefront sync, product schema generator, and Antigravity MCP suite for Shopify stores. 100% Python standard library.">
+  <meta name="twitter:image" content="https://shopify.nullai.tech/assets/og-shopify-connector.png">
+
+  <!-- AEO & SEO Schema.org Graph -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Shopify Connector",
+        "url": "https://shopify.nullai.tech/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "offers": {
+          "@type": "Offer",
+          "price": "19.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://buy.stripe.com/7sI7sA8hM2X8eFG8ww"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Neal Frazier Tech",
+          "url": "https://nullai.tech"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Shopify Connector and how does it automate e-commerce operations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shopify Connector is an autonomous zero-dependency e-commerce bridge. It provides a GraphQL Admin API client, 1-click transpilation of Etsy listing kits into Shopify productCreate mutations, real-time net profit margin calculators, and 7 MCP tools for Antigravity, Claude, and sovereign AI agents."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert existing Etsy or Printify product listings to Shopify?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The built-in Etsy-to-Shopify transpiler ingests 13-tag listing kits from etsy-pod-forge or Printify manifests, converts plaintext bullet points into clean HTML descriptions, generates all variant SKUs, and produces validated Shopify GraphQL mutations ready for 1-click publishing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Shopify Connector require external pip libraries or cloud dependencies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The entire engine is built 100% on the Python 3.10+ standard library with zero external pip dependencies. It runs completely locally on port 8113 with zero telemetry leaks."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- HIGH-CONVERTING SALES FUNNEL BANNER -->
+    <aside class="sales-banner" aria-label="Special Launch Offer">
+      <div class="sales-banner-left">
+        <span class="founding-badge">FOUNDING ACCESS</span>
+        <div class="sales-banner-text">
+          <strong>Autonomous Shopify Bridge:</strong> <span class="price-strike">$79</span> <span class="price-current">$19 Lifetime</span> • GraphQL mutations, Etsy transpiler, and multi-location inventory sync.
+        </div>
+      </div>
+      <div class="sales-banner-right">
+        <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Purchase Pro with Stripe">
+          <span>💳 Stripe Checkout ($19)</span>
+        </a>
+        <button type="button" class="btn btn-solana" onclick="openPaywallModal('DePay Solana Checkout')" aria-label="Purchase Pro with Solana">
+          <span>⚡ Solana DePay</span>
+        </button>
+        <button type="button" class="btn-link" onclick="openPaywallModal('Enter License Key')" aria-label="Activate License Key">
+          Have a key? Activate
+        </button>
+      </div>
+    </aside>
+
+    <!-- HEADER & STATUS -->
+    <header class="header">
+      <div class="brand-wrap">
+        <img src="/assets/favicon.svg" alt="Shopify Connector Hexagonal Bag Logo" class="brand-icon">
+        <h1 class="brand-title">
+          SHOPIFY CONNECTOR
+          <span class="brand-version">v1.0.0</span>
+        </h1>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <div id="storeStatus" class="status-badge">
+          <span class="status-dot"></span> CONNECTING GRAPHQL...
+        </div>
+        <span id="proStatusBadge" class="brand-version" style="background: rgba(16,185,129,0.1); color: var(--emerald); border-color: rgba(16,185,129,0.3);">
+          COMMUNITY EDITION
+        </span>
+      </div>
+    </header>
+
+    <!-- MAIN COCKPIT -->
+    <main>
+      
+      <!-- BENTO METRICS -->
+      <section class="bento-grid" aria-label="Storefront Telemetry Overview">
+        <div class="card col-3">
+          <div class="card-header">
+            <span class="card-title">
+              <span class="card-title-icon">🏬</span> Storefront
+            </span>
+          </div>
+          <div class="metric-box">
+            <div id="metricShopName" class="metric-val val-emerald" style="font-size: 1.5rem; word-break: break-word;">Syncing...</div>
+            <div id="metricPlan" class="metric-sub">Shopify Plan</div>
+          </div>
+        </div>
+
+        <div class="card col-3">
+          <div class="card-header">
+            <span class="card-title">
+              <span class="card-title-icon">📦</span> Catalog Products
+            </span>
+          </div>
+          <div class="metric-box">
+            <div id="metricProducts" class="metric-val val-cyan">0</div>
+            <div class="metric-sub">Synced Items & SKUs</div>
+          </div>
+        </div>
+
+        <div class="card col-3">
+          <div class="card-header">
+            <span class="card-title">
+              <span class="card-title-icon">🤖</span> MCP Suite
+            </span>
+          </div>
+          <div class="metric-box">
+            <div id="metricMcp" class="metric-val val-gold">7 Tools</div>
+            <div class="metric-sub">Antigravity Stdio Active</div>
+          </div>
+        </div>
+
+        <div class="card col-3">
+          <div class="card-header">
+            <span class="card-title">
+              <span class="card-title-icon">💵</span> Net Profit Target
+            </span>
+          </div>
+          <div class="metric-box">
+            <div id="outProfit" class="metric-val val-emerald">$25.85</div>
+            <div class="metric-sub">Simulated Margin per Sale</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE TOOL 1: REAL-TIME PROFIT & MARGIN SIMULATOR -->
+      <section class="card col-12" style="margin-bottom: 2rem;" aria-label="Interactive Profit & Margin Simulator">
+        <div class="card-header">
+          <h2 class="card-title">
+            <span class="card-title-icon">⚡</span> Real-Time Shopify & POD Margin Simulator
+          </h2>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">
+            Zero Fake Work • True Formula Calculation
+          </span>
+        </div>
+
+        <div class="bento-grid" style="margin-bottom: 0;">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="simRetail" class="form-label">Retail Sale Price ($ USD):</label>
+              <input type="number" id="simRetail" class="form-control text-mono" value="44.95" step="0.50" min="5">
+            </div>
+            <div class="form-group">
+              <label for="simPod" class="form-label">POD Base Production Cost ($ USD):</label>
+              <input type="number" id="simPod" class="form-control text-mono" value="17.50" step="0.50" min="1">
+            </div>
+            <div class="form-group">
+              <label for="simShipping" class="form-label">Customer Shipping Charged ($ USD):</label>
+              <input type="number" id="simShipping" class="form-control text-mono" value="0.00" step="0.50" min="0">
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem; flex-wrap: wrap;">
+              <div>
+                <label for="simPlan" class="form-label">Shopify Plan:</label>
+                <select id="simPlan" class="form-control text-mono" style="width: auto;">
+                  <option value="basic">Basic (2.9% + 30¢)</option>
+                  <option value="shopify">Shopify (2.6% + 30¢)</option>
+                  <option value="advanced">Advanced (2.4% + 30¢)</option>
+                </select>
+              </div>
+              <div style="margin-top: 1.25rem;">
+                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
+                  <input type="checkbox" id="simAds"> Include 15% Ad CAC Buffer
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="margin-gauge-wrap">
+              <div>
+                <div class="gauge-label">Profit Margin</div>
+                <div id="outMargin" class="gauge-val">57.5%</div>
+              </div>
+              <div style="border-left: 1px solid var(--border-subtle); padding-left: 1.5rem;">
+                <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Gross Revenue: <strong id="outGross" class="text-mono" style="color:#FFF;">$44.95</strong></div>
+                <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Shopify Fees: <strong id="outFees" class="text-mono" style="color:var(--gold);">$1.60</strong></div>
+                <div style="font-size: 0.85rem;">Total Fulfillment Cost: <strong id="outCost" class="text-mono" style="color:var(--ruby);">$19.10</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE TOOL 2: ETSY-TO-SHOPIFY PAYLOAD TRANSPILER -->
+      <section class="card col-12" style="margin-bottom: 2rem;" aria-label="Etsy to Shopify Payload Transpiler">
+        <div class="card-header">
+          <h2 class="card-title">
+            <span class="card-title-icon">🔄</span> 1-Click Etsy-to-Shopify GraphQL Transpiler
+          </h2>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">
+            Direct Bridge for etsy-pod-forge (:8107) & etsy-connector (:8108)
+          </span>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-outline preset-btn active" data-preset="sweatshirt">
+            Sweatshirt Listing Kit
+          </button>
+          <button type="button" class="btn btn-outline preset-btn" data-preset="mug">
+            Botanical Ceramic Mug
+          </button>
+          <button type="button" class="btn btn-outline preset-btn" data-preset="tote">
+            Farmers Market Tote
+          </button>
+        </div>
+
+        <div class="bento-grid">
+          <div class="col-6">
+            <form id="transpileForm">
+              <div class="form-group">
+                <label for="transTitle" class="form-label">Etsy Product Title:</label>
+                <input type="text" id="transTitle" class="form-control" value="Personalized Grandma Garden Sweatshirt | Botanical Wildflower Crewneck Sweater">
+              </div>
+              <div class="form-group">
+                <label for="transTags" class="form-label">Etsy 13 Search Tags:</label>
+                <input type="text" id="transTags" class="form-control" value="grandma gift, wildflower sweater, cottagecore crewneck, gardener gift, botanical art, cozy fleece">
+              </div>
+              <div class="form-group">
+                <label for="transPrice" class="form-label">Retail Price ($):</label>
+                <input type="number" id="transPrice" class="form-control text-mono" value="44.95" step="0.50">
+              </div>
+              <div class="form-group">
+                <label for="transDesc" class="form-label">Product Description:</label>
+                <textarea id="transDesc" class="form-control" rows="4">• 50% cotton, 50% polyester heavyweight cozy fleece
+• Double-needle stitching throughout for durable keepsake quality
+• Relaxed unisex fit perfect for cool mornings in the garden</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <span>⚡ Transpile to Shopify GraphQL</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label">Transpiled Shopify GraphQL Mutation Preview:</label>
+            <pre id="transpilerOutput" class="stream-box" style="height: 310px; color: #10B981; white-space: pre-wrap;">Select a preset or click Transpile to inspect generated Shopify productCreate mutation...</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATALOG BROWSER & LIVE SSE STREAM SPLIT -->
+      <div class="bento-grid">
+        
+        <!-- CATALOG PRODUCTS TABLE -->
+        <section class="card col-8" aria-label="Catalog Products">
+          <div class="card-header">
+            <h2 class="card-title">
+              <span class="card-title-icon">📋</span> Store Catalog & Live Inventory
+            </h2>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" class="btn btn-outline" style="min-height: 34px; padding: 0.3rem 0.75rem; font-size: 0.78rem;" onclick="triggerProAction('export_catalog')">
+                📥 Export CSV (Pro)
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <input type="text" id="catalogSearch" class="form-control text-mono" placeholder="Search catalog by title, tag, or handle..." aria-label="Search catalog">
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Status</th>
+                  <th>Price</th>
+                  <th>Inventory</th>
+                  <th>Tags</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-dim);">
+                    Loading catalog items...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- LIVE SSE STREAM CONSOLE -->
+        <section class="card col-4" aria-label="Live Telemetry Feed">
+          <div class="card-header">
+            <h2 class="card-title">
+              <span class="card-title-icon">📡</span> Live Telemetry Feed
+            </h2>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--emerald);">
+              ● SSE LIVE (:8113)
+            </span>
+          </div>
+
+          <div id="streamConsole" class="stream-box">
+            <div class="stream-entry">
+              <span class="stream-time">[INIT]</span> Connecting to Shopify Connector telemetry stream...
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- FROSTED GLASS BLUR PAYWALL (Pro Bulk Mutations & Webhooks) -->
+      <section class="card col-12 paywall-wrapper" aria-labelledby="proTitle" style="margin-top: 1rem;">
+        <div class="card-header">
+          <h2 id="proTitle" class="card-title">
+            <span>🔒 Automated Multi-Location Inventory Sync & Webhook Engine</span>
+          </h2>
+          <span class="founding-badge">PRO SUITE</span>
+        </div>
+
+        <!-- Blurred Content -->
+        <div class="paywall-blurred">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: var(--bg-card-subtle); padding: 1.25rem; border-radius: 10px; border: 1px solid var(--border-subtle);">
+              <div style="font-weight: 700; color: var(--emerald);">Multi-Location Inventory Watcher</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                Continuous background balance monitor across 5+ fulfillment depots and Printify print providers.
+              </div>
+            </div>
+            <div style="background: var(--bg-card-subtle); padding: 1.25rem; border-radius: 10px; border: 1px solid var(--border-subtle);">
+              <div style="font-weight: 700; color: var(--gold);">GraphQL Bulk Mutation Pipeline</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                Publish up to 500 product listings in a single batch operation with verified variants and media.
+              </div>
+            </div>
+            <div style="background: var(--bg-card-subtle); padding: 1.25rem; border-radius: 10px; border: 1px solid var(--border-subtle);">
+              <div style="font-weight: 700; color: var(--cyan);">Real-Time Order & Webhook Router</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                Direct webhook ingestion routing paid orders into autonomous print fulfillment queues.
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="triggerProAction('export_catalog')">
+            Download Complete Shopify Storefront Bundle
+          </button>
+        </div>
+
+        <!-- Lock Overlay -->
+        <div class="paywall-overlay">
+          <div class="paywall-icon">🔐</div>
+          <h3 class="paywall-title">Unlock Shopify Connector Pro</h3>
+          <p class="paywall-desc">
+            Upgrade to the Founding Member Lifetime License. Unlock automated multi-location stock balancers, bulk GraphQL mutation dispatchers, unmetered catalog CSV exports, and priority MCP bridges.
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
+            <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary">
+              <span>💳 Unlock Pro via Stripe ($19)</span>
+            </a>
+            <button type="button" class="btn btn-solana" onclick="openPaywallModal('DePay Solana Checkout')">
+              <span>⚡ Unlock via Solana</span>
+            </button>
+            <button type="button" class="btn btn-outline" onclick="openPaywallModal('Enter License Key')">
+              <span>Enter License Key</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- PRO PAYWALL MODAL -->
+    <div id="paywallModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <button type="button" class="modal-close" onclick="closePaywallModal()" aria-label="Close dialog">&times;</button>
+        
+        <span class="founding-badge">PRO LICENSE</span>
+        <h3 id="modalTitle" style="font-size: 1.4rem; color: #FFF; margin: 0.75rem 0 0.25rem 0;">
+          Unlock Shopify Connector Pro
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Triggered by: <strong id="modalFeatureName" style="color: var(--emerald);">Advanced Feature</strong>
+        </p>
+
+        <ul class="matrix-list">
+          <li class="matrix-item"><span class="matrix-check">✓</span> <span>Autonomous GraphQL Admin API product mutations & catalog batching</span></li>
+          <li class="matrix-item"><span class="matrix-check">✓</span> <span>1-Click Etsy-to-Shopify transpiler matching etsy-pod-forge kits</span></li>
+          <li class="matrix-item"><span class="matrix-check">✓</span> <span>Real-time net margin & ad attribution CAC profit simulator</span></li>
+          <li class="matrix-item"><span class="matrix-check">✓</span> <span>7 Antigravity & Claude MCP tools for autonomous agents</span></li>
+          <li class="matrix-item"><span class="matrix-check">✓</span> <span>100% Python standard library — zero external pip dependencies</span></li>
+          <li class="matrix-item"><span class="matrix-check">✓</span> <span>Lifetime access, free updates & sovereign local ownership</span></li>
+        </ul>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap;">
+          <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1; min-width: 180px;">
+            <span>💳 Stripe Checkout ($19)</span>
+          </a>
+          <a href="https://depay.com/GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" target="_blank" rel="noopener" class="btn btn-solana" style="flex: 1; min-width: 180px;">
+            <span>⚡ Solana Pay ($19)</span>
+          </a>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+          <label for="licenseKeyInput" class="form-label" style="display:block; font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">
+            Already purchased? Enter receipt email or license key:
+          </label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="licenseKeyInput" class="form-control text-mono" placeholder="SOVEREIGN-KEY-..." aria-label="License key input">
+            <button type="button" class="btn btn-outline" onclick="verifyLicenseKey()">Activate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBTLE ATTRIBUTION FOOTER -->
+    <footer class="footer">
+      <div>
+        Engineered by <strong>Neal Frazier Tech</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
+      </div>
+      <div style="margin-top: 0.5rem; font-size: 0.78rem;">
+        <a href="https://github.com/1nc0gn30/shopify-connector" target="_blank" rel="noopener">GitHub Repository</a> • Port 8113 (Shopify Connector Cockpit & GraphQL Bridge)
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/shopify_deck.js"></script>
+</body>
+</html>
