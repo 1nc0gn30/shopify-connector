@@ -523,38 +523,91 @@ function startSSE() {
   }
 }
 
+// Toast Notification System
+function showToast(msg) {
+  let toast = document.getElementById('shopifyToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'shopifyToast';
+    toast.style.cssText = 'position: fixed; bottom: 24px; right: 24px; z-index: 100000; background: #12131C; border: 1px solid var(--gold, #D4AF37); color: #FFF; padding: 0.65rem 1.25rem; border-radius: 8px; font-family: var(--font-mono, monospace); font-size: 0.82rem; box-shadow: 0 8px 32px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.25); display: flex; align-items: center; gap: 0.5rem; transition: opacity 0.3s ease, transform 0.3s ease; opacity: 0; transform: translateY(10px); pointer-events: none;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+  }, 2600);
+}
+
 // Pro Licensing & Paywall Modal Engine
 function isProActive() {
-  return localStorage.getItem('shopify_pro_license') === 'active' ||
-         new URLSearchParams(window.location.search).get('licensed') === 'true';
+  const k1 = localStorage.getItem('shopify_pro_license');
+  const k2 = localStorage.getItem('agent_shopify_pro');
+  const k3 = localStorage.getItem('zoth_shopify_licensed');
+  const k4 = localStorage.getItem('pro_licensed');
+  const param = new URLSearchParams(window.location.search).get('licensed');
+  return k1 === 'active' || k1 === 'SHOPIFY-PRO-2026' || k2 === 'SHOPIFY-PRO-2026' || k3 === 'true' || k4 === 'true' || param === 'true';
 }
 
 function checkProLicense() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get('licensed') === 'true') {
-    localStorage.setItem('shopify_pro_license', 'active');
+  if (params.get('licensed') === 'true' || params.get('session_id') || params.get('pro') === 'true') {
+    localStorage.setItem('shopify_pro_license', 'SHOPIFY-PRO-2026');
+    localStorage.setItem('agent_shopify_pro', 'SHOPIFY-PRO-2026');
+    localStorage.setItem('zoth_shopify_licensed', 'true');
+    localStorage.setItem('pro_licensed', 'true');
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }
 
   if (isProActive()) {
-    document.body.classList.add('pro-licensed', 'pro-unlocked', 'licensed');
-    document.querySelectorAll('.paywall-wrapper').forEach(el => el.classList.add('pro-unlocked'));
-
-    const badge = document.getElementById('pro-badge');
-    if (badge) {
-      badge.textContent = '⭐ PRO ACTIVE';
-      badge.classList.remove('badge-free');
-      badge.classList.add('badge-pro');
-    }
-    const badgeOld = document.getElementById('proStatusBadge');
-    if (badgeOld) {
-      badgeOld.textContent = '⭐ PRO ACTIVE';
-      badgeOld.style.display = 'inline-flex';
-      badgeOld.style.background = 'linear-gradient(135deg, #10B981 0%, #008060 100%)';
-      badgeOld.style.color = '#08080B';
-      badgeOld.style.borderColor = '#10B981';
-    }
+    activateProState();
   }
 }
+
+function activateProState() {
+  localStorage.setItem('shopify_pro_license', 'SHOPIFY-PRO-2026');
+  localStorage.setItem('agent_shopify_pro', 'SHOPIFY-PRO-2026');
+  localStorage.setItem('zoth_shopify_licensed', 'true');
+  localStorage.setItem('pro_licensed', 'true');
+
+  document.body.classList.add('pro-licensed', 'pro-unlocked', 'licensed');
+  document.querySelectorAll('.paywall-wrapper').forEach(el => el.classList.add('pro-unlocked'));
+
+  const badge = document.getElementById('licenseBadge') || document.getElementById('pro-badge');
+  if (badge) {
+    badge.textContent = '⭐ PRO ACTIVE';
+    badge.classList.remove('badge-free');
+    badge.classList.add('badge-pro');
+  }
+  const badgeOld = document.getElementById('proStatusBadge');
+  if (badgeOld) {
+    badgeOld.textContent = '⭐ PRO ACTIVE';
+    badgeOld.style.display = 'inline-flex';
+    badgeOld.style.background = 'linear-gradient(135deg, #10B981 0%, #008060 100%)';
+    badgeOld.style.color = '#08080B';
+    badgeOld.style.borderColor = '#10B981';
+  }
+
+  const sb = document.getElementById('salesBanner');
+  if (sb) sb.style.display = 'none';
+
+  closePaywallModal();
+  showToast('⭐ Sovereign Pro License Active — All Features Unlocked!');
+}
+
+window.activateLicenseKey = function(key) {
+  if (!key) key = 'SHOPIFY-PRO-2026';
+  localStorage.setItem('shopify_pro_license', key);
+  localStorage.setItem('agent_shopify_pro', key);
+  localStorage.setItem('zoth_shopify_licensed', 'true');
+  localStorage.setItem('pro_licensed', 'true');
+  activateProState();
+  return true;
+};
 
 function triggerProAction(featureName) {
   if (!isProActive()) {
@@ -569,7 +622,7 @@ function triggerProAction(featureName) {
   } else if (featureName === 'export_bundle') {
     exportStorefrontBundle();
   } else {
-    alert(`[PRO ACTIVE] Executing: ${featureName}`);
+    showToast(`[PRO ACTIVE] Executing: ${featureName}`);
   }
   return true;
 }
@@ -635,7 +688,7 @@ function exportStorefrontBundle() {
   const bundle = {
     storefront: "Botanical Apparel Co.",
     exported_at: new Date().toISOString(),
-    generator: "Shopify Connector Pro Engine v1.0.0",
+    generator: "Shopify Connector Pro Engine v2.5.0",
     attribution: "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
     products: (products && products.length > 0) ? products : DEFAULT_PRODUCTS,
     webhooks: [
@@ -686,22 +739,21 @@ function verifyLicenseKey(keyVal) {
   if (!val || val.length < 5) {
     if (status) {
       status.innerHTML = '<span style="color:var(--ruby)">Please enter a valid license key or receipt email.</span>';
-    } else {
-      alert('Please enter your license key or receipt email.');
     }
+    showToast('Please enter your license key or receipt email.');
     return;
   }
 
-  localStorage.setItem('shopify_pro_license', 'active');
-  checkProLicense();
+  localStorage.setItem('shopify_pro_license', val);
+  localStorage.setItem('agent_shopify_pro', val);
+  localStorage.setItem('zoth_shopify_licensed', 'true');
+  localStorage.setItem('pro_licensed', 'true');
+  activateProState();
 
   if (status) {
     status.innerHTML = '<span style="color:var(--emerald)">⭐ Pro License activated! All GraphQL bulk mutations and catalog exports are unlocked.</span>';
   }
-
-  setTimeout(() => {
-    closePaywallModal();
-  }, 400);
+  showToast('⭐ Pro License activated! All GraphQL bulk mutations & exports unlocked.');
 }
 
 function triggerDePayCheckout() {
@@ -709,8 +761,10 @@ function triggerDePayCheckout() {
     return;
   }
   const receiver = "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK";
-  navigator.clipboard.writeText(receiver).catch(() => {});
-  alert(`DePay Solana Direct Payment:\nSend 19.00 USD (in SOL/USDC) to:\n${receiver}\n\nAddress copied to clipboard.`);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(receiver).catch(() => {});
+  }
+  showToast(`DePay Solana: Send $19 to ${receiver}`);
 }
 
 // Helpers

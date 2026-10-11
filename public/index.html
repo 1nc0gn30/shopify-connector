@@ -108,7 +108,7 @@
   <div class="container">
     
     <!-- HIGH-CONVERTING SALES FUNNEL BANNER -->
-    <aside class="sales-banner" aria-label="Special Launch Offer">
+    <aside id="salesBanner" class="sales-banner" aria-label="Special Launch Offer">
       <div class="sales-banner-left">
         <span class="founding-badge">FOUNDING ACCESS</span>
         <div class="sales-banner-text">
@@ -134,14 +134,14 @@
         <img src="/assets/icon.png" alt="Shopify Connector Logo" class="brand-icon">
         <h1 class="brand-title">
           SHOPIFY CONNECTOR
-          <span class="brand-version">v1.0.0</span>
+          <span class="brand-version">v2.5 SOVEREIGN</span>
         </h1>
       </div>
       <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
         <div id="storeStatus" class="status-badge">
           <span class="status-dot"></span> CONNECTING GRAPHQL...
         </div>
-        <span id="pro-badge" class="badge-free">FREE TIER</span>
+        <span id="licenseBadge" class="badge-free" data-alias="pro-badge">⚡ FREE TIER</span>
         <span id="proStatusBadge" style="display:none;"></span>
         <button type="button" id="btn-header-key" class="btn btn-outline" style="min-height: 32px; padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="openPaywallModal('Header Key Activation')">
           🔑 Enter Key
@@ -445,7 +445,7 @@
     </main>
 
     <!-- PRO PAYWALL MODAL -->
-    <div id="paywall-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="paywall-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-alias="licenseModal">
       <div class="modal-card">
         <button type="button" id="modal-close-btn" class="modal-close" onclick="closePaywallModal()" aria-label="Close dialog">&times;</button>
         
@@ -481,7 +481,7 @@
           </label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="text" id="license-key-input" class="form-control text-mono" placeholder="SHOPIFY-PRO-..." aria-label="License key input">
-            <button type="button" id="btn-activate-key" class="btn btn-outline" onclick="verifyLicenseKey()">Activate</button>
+            <button type="button" id="btn-activate-key" class="btn btn-outline" data-alias="btnActivateKey" onclick="verifyLicenseKey()">Activate</button>
           </div>
           <div id="license-status" style="margin-top: 0.5rem; font-size: 0.8rem;"></div>
         </div>

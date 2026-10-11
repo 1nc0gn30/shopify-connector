@@ -1,0 +1,11 @@
+{
+  "name": "shopify-connector",
+  "version": "2.5.0",
+  "description": "Shopify GraphQL Admin API & POD sync engine with 1-click Etsy listing transpiler, net profit simulator, and Antigravity MCP suite.",
+  "author": "Neal Frazier Tech (@1nc0gn30)",
+  "license": "MIT",
+  "scripts": {
+    "serve": "python3 -m http.server 8113 --directory public",
+    "test": "pytest tests"
+  }
+}
