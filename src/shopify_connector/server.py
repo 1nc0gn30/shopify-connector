@@ -24,6 +24,26 @@ from .seo_engine import audit_listing, calculate_margins
 from .transpiler import transpile_etsy_to_shopify
 
 
+def _is_local_origin(origin) -> bool:
+    """Browser Origin check. No Origin header = non-browser client (CLI/agent): allowed.
+    Otherwise only http(s)://localhost / 127.0.0.1 / [::1] pages may call this API, so a
+    random website can't drive the local server from the user's browser (CSRF)."""
+    if not origin:
+        return True
+    from urllib.parse import urlparse
+    try:
+        u = urlparse(origin)
+    except ValueError:
+        return False
+    return u.scheme in ("http", "https") and u.hostname in ("localhost", "127.0.0.1", "::1")
+
+
+def _cors_origin(handler) -> str:
+    origin = handler.headers.get("Origin")
+    return origin if origin and _is_local_origin(origin) else "http://127.0.0.1"
+
+
+
 def _default_bind_host() -> str:
     """Bind address: localhost unless explicitly opted in via $ZOTH_BIND_HOST or
     $HOST (IP literal only; zsh sets HOST to the hostname) or --host."""
@@ -52,7 +72,7 @@ class ShopifyCockpitHandler(BaseHTTPRequestHandler):
         return
 
     def _send_cors_headers(self) -> None:
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Origin", _cors_origin(self))
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
         self.send_header("X-Content-Type-Options", "nosniff")
@@ -150,6 +170,14 @@ class ShopifyCockpitHandler(BaseHTTPRequestHandler):
         self._serve_static(path)
 
     def do_POST(self) -> None:
+        if not _is_local_origin(self.headers.get("Origin")):
+            _body = b'{"error": "cross-origin request blocked"}'
+            self.send_response(403)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(_body)))
+            self.end_headers()
+            self.wfile.write(_body)
+            return
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path.rstrip("/")
 
@@ -193,7 +221,8 @@ class ShopifyCockpitHandler(BaseHTTPRequestHandler):
 
         if path == "/api/create-draft":
             res = self.server.client.create_draft_product(body)
-            self.server.broadcast_sse("draft_created", {"title": body.get("title")})
+            if res.get("success"):
+                self.server.broadcast_sse("draft_created", {"title": body.get("title")})
             self._send_json(res)
             return
 
@@ -204,7 +233,7 @@ class ShopifyCockpitHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "text/event-stream")
         self.send_header("Cache-Control", "no-cache")
         self.send_header("Connection", "keep-alive")
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Origin", _cors_origin(self))
         self.end_headers()
 
         q = self.server.subscribe_sse()

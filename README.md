@@ -75,3 +75,10 @@ The server binds to `127.0.0.1` by default. To reach it from other devices,
 opt in explicitly with `--host 0.0.0.0` (or set `ZOTH_BIND_HOST=0.0.0.0`; an IP
 in `HOST` is also honoured, a plain hostname is ignored) and only on a trusted
 network.
+
+## Safety
+
+- The browser API only accepts cross-origin requests from `localhost` / `127.0.0.1` pages. POSTs from any other website get `403`, and CORS echoes only local origins (never `*`), so a site you visit can't drive or read this local server. CLI and agent clients (no `Origin` header) are unaffected.
+- `SHOPIFY_ACCESS_TOKEN` is only sent in the `X-Shopify-Access-Token` header and never returned by any endpoint.
+- **Live writes are dry runs by default.** With a live store, `create-draft` (HTTP, MCP `shopify_create_draft_product`) returns the product and GraphQL mutation without sending them. Pass `"confirm": true`, or set `SHOPIFY_ALLOW_LIVE_WRITES=1`, to create the draft.
+- A GraphQL transport/auth failure is reported as `success: false`, never as a created product with a fabricated id.

@@ -270,8 +270,14 @@ class ShopifyClient:
                 return p
         return None
 
-    def create_draft_product(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Create a new product draft in store or local registry."""
+    def create_draft_product(self, input_data: Dict[str, Any], confirm: Optional[bool] = None) -> Dict[str, Any]:
+        """Create a new product draft in store or local registry.
+
+        With live credentials this writes to the real store, so it is a dry run
+        unless ``confirm`` (or ``input_data["confirm"]``) is true or
+        ``SHOPIFY_ALLOW_LIVE_WRITES=1``."""
+        if confirm is None:
+            confirm = bool(input_data.get("confirm", False))
         new_id = f"gid://shopify/Product/{int(time.time())}"
         title = input_data.get("title", "Untitled Product")
         handle = input_data.get("handle") or title.lower().replace(" ", "-").replace("'", "").replace('"', "")
@@ -304,6 +310,16 @@ class ShopifyClient:
             "seo": input_data.get("seo", {"title": title, "description": input_data.get("description", "")}),
             "createdAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         }
+
+        if self.is_live and not (confirm or os.environ.get("SHOPIFY_ALLOW_LIVE_WRITES") == "1"):
+            return {
+                "success": False,
+                "dry_run": True,
+                "mode": "live_dry_run",
+                "message": "Live store connected: pass confirm=true (or set SHOPIFY_ALLOW_LIVE_WRITES=1) to create this draft in Shopify.",
+                "product": product_record,
+                "graphql_mutation": self.generate_product_create_mutation(product_record),
+            }
 
         self._local_catalog.insert(0, product_record)
 
@@ -341,7 +357,11 @@ class ShopifyClient:
             "tags": tags,
         }
         res = self._graphql_request(mutation, {"input": payload_input})
-        errors = res.get("data", {}).get("productCreate", {}).get("userErrors", [])
+        if res.get("errors"):
+            # Transport/auth failure: never report success with a fabricated id.
+            self._local_catalog.remove(product_record)
+            return {"success": False, "errors": res["errors"], "product": product_record, "mode": "live"}
+        errors = (res.get("data") or {}).get("productCreate", {}).get("userErrors", [])
         if errors:
             return {"success": False, "errors": errors, "product": product_record}
         
