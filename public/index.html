@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopify Connector — Autonomous GraphQL Admin API & Print-on-Demand E-Commerce Engine</title>
   <meta name="description" content="Autonomous zero-dependency Shopify GraphQL Admin API connector, 1-click Etsy-to-Shopify payload transpiler, real-time profit margin calculator, and Antigravity MCP suite.">
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon.png">
 
   <!-- OpenGraph Meta Tags -->
   <meta property="og:title" content="Shopify Connector — Autonomous GraphQL Admin API & POD Engine">
   <meta property="og:description" content="Autonomous zero-dependency Shopify GraphQL Admin API connector, 1-click Etsy-to-Shopify payload transpiler, and profit margin calculator for AI agents.">
   <meta property="og:url" content="https://shopify.nullai.tech/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://shopify.nullai.tech/assets/og-shopify-connector.png">
+  <meta property="og:image" content="https://shopify.nullai.tech/assets/banner.png">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +21,25 @@
   <meta name="twitter:creator" content="@1nc0gn30">
   <meta name="twitter:title" content="Shopify Connector — Autonomous GraphQL Admin API & POD Engine">
   <meta name="twitter:description" content="Unified storefront sync, product schema generator, and Antigravity MCP suite for Shopify stores. 100% Python standard library.">
-  <meta name="twitter:image" content="https://shopify.nullai.tech/assets/og-shopify-connector.png">
+  <meta name="twitter:image" content="https://shopify.nullai.tech/assets/banner.png">
+
+  <!-- DePay Web3 Solana Widget v13 -->
+  <script src="https://integrate.depay.com/widgets/v13.js" defer></script>
+  <script>
+    window.addEventListener('load', function() {
+      if (typeof window.DePayButtons !== 'undefined') {
+        window.DePayButtons.init({
+          selector: '.btn-depay-trigger',
+          integration: '428790dd-7ad1-407c-8ecf-c048c77a4cb8',
+          payload: {
+            receiver: 'GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK',
+            amount: 19.00,
+            currency: 'USD'
+          }
+        });
+      }
+    });
+  </script>
 
   <!-- AEO & SEO Schema.org Graph -->
   <script type="application/ld+json">
@@ -100,10 +119,10 @@
         <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Purchase Pro with Stripe">
           <span>💳 Stripe Checkout ($19)</span>
         </a>
-        <button type="button" class="btn btn-solana" onclick="openPaywallModal('DePay Solana Checkout')" aria-label="Purchase Pro with Solana">
+        <button type="button" id="btn-depay-solana" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()" aria-label="Purchase Pro with Solana">
           <span>⚡ Solana DePay</span>
         </button>
-        <button type="button" class="btn-link" onclick="openPaywallModal('Enter License Key')" aria-label="Activate License Key">
+        <button type="button" id="btn-open-license-modal" class="btn-link" onclick="openPaywallModal('Enter License Key')" aria-label="Activate License Key">
           Have a key? Activate
         </button>
       </div>
@@ -112,7 +131,7 @@
     <!-- HEADER & STATUS -->
     <header class="header">
       <div class="brand-wrap">
-        <img src="/assets/favicon.svg" alt="Shopify Connector Hexagonal Bag Logo" class="brand-icon">
+        <img src="/assets/icon.png" alt="Shopify Connector Logo" class="brand-icon">
         <h1 class="brand-title">
           SHOPIFY CONNECTOR
           <span class="brand-version">v1.0.0</span>
@@ -122,9 +141,11 @@
         <div id="storeStatus" class="status-badge">
           <span class="status-dot"></span> CONNECTING GRAPHQL...
         </div>
-        <span id="proStatusBadge" class="brand-version" style="background: rgba(16,185,129,0.1); color: var(--emerald); border-color: rgba(16,185,129,0.3);">
-          COMMUNITY EDITION
-        </span>
+        <span id="pro-badge" class="badge-free">FREE TIER</span>
+        <span id="proStatusBadge" style="display:none;"></span>
+        <button type="button" id="btn-header-key" class="btn btn-outline" style="min-height: 32px; padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="openPaywallModal('Header Key Activation')">
+          🔑 Enter Key
+        </button>
       </div>
     </header>
 
@@ -291,7 +312,12 @@
           </div>
 
           <div class="col-6">
-            <label class="form-label">Transpiled Shopify GraphQL Mutation Preview:</label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <label class="form-label" style="margin-bottom: 0;">Transpiled Shopify GraphQL Mutation Preview:</label>
+              <button type="button" id="btn-copy-transpile" class="btn btn-outline" style="min-height: 30px; padding: 0.2rem 0.6rem; font-size: 0.75rem;" onclick="triggerProAction('copy_transpile')">
+                📋 Copy GraphQL (Pro)
+              </button>
+            </div>
             <pre id="transpilerOutput" class="stream-box" style="height: 310px; color: #10B981; white-space: pre-wrap;">Select a preset or click Transpile to inspect generated Shopify productCreate mutation...</pre>
           </div>
         </div>
@@ -307,7 +333,7 @@
               <span class="card-title-icon">📋</span> Store Catalog & Live Inventory
             </h2>
             <div style="display: flex; gap: 0.5rem;">
-              <button type="button" class="btn btn-outline" style="min-height: 34px; padding: 0.3rem 0.75rem; font-size: 0.78rem;" onclick="triggerProAction('export_catalog')">
+              <button type="button" id="btn-export-catalog" class="btn btn-outline" style="min-height: 34px; padding: 0.3rem 0.75rem; font-size: 0.78rem;" onclick="triggerProAction('export_catalog')">
                 📥 Export CSV (Pro)
               </button>
             </div>
@@ -370,7 +396,7 @@
 
         <!-- Blurred Content -->
         <div class="paywall-blurred">
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="pro-features-grid">
             <div style="background: var(--bg-card-subtle); padding: 1.25rem; border-radius: 10px; border: 1px solid var(--border-subtle);">
               <div style="font-weight: 700; color: var(--emerald);">Multi-Location Inventory Watcher</div>
               <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
@@ -390,7 +416,7 @@
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" onclick="triggerProAction('export_catalog')">
+          <button type="button" id="btn-export-bundle" class="btn btn-primary" onclick="triggerProAction('export_bundle')">
             Download Complete Shopify Storefront Bundle
           </button>
         </div>
@@ -406,10 +432,10 @@
             <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary">
               <span>💳 Unlock Pro via Stripe ($19)</span>
             </a>
-            <button type="button" class="btn btn-solana" onclick="openPaywallModal('DePay Solana Checkout')">
+            <button type="button" id="btn-depay-paywall" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()">
               <span>⚡ Unlock via Solana</span>
             </button>
-            <button type="button" class="btn btn-outline" onclick="openPaywallModal('Enter License Key')">
+            <button type="button" id="btn-unlock-paywall" class="btn btn-outline" onclick="openPaywallModal('Paywall Overlay Activation')">
               <span>Enter License Key</span>
             </button>
           </div>
@@ -419,9 +445,9 @@
     </main>
 
     <!-- PRO PAYWALL MODAL -->
-    <div id="paywallModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="paywall-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-card">
-        <button type="button" class="modal-close" onclick="closePaywallModal()" aria-label="Close dialog">&times;</button>
+        <button type="button" id="modal-close-btn" class="modal-close" onclick="closePaywallModal()" aria-label="Close dialog">&times;</button>
         
         <span class="founding-badge">PRO LICENSE</span>
         <h3 id="modalTitle" style="font-size: 1.4rem; color: #FFF; margin: 0.75rem 0 0.25rem 0;">
@@ -444,19 +470,20 @@
           <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1; min-width: 180px;">
             <span>💳 Stripe Checkout ($19)</span>
           </a>
-          <a href="https://depay.com/GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" target="_blank" rel="noopener" class="btn btn-solana" style="flex: 1; min-width: 180px;">
+          <button type="button" id="btn-depay-modal" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()" style="flex: 1; min-width: 180px;">
             <span>⚡ Solana Pay ($19)</span>
-          </a>
+          </button>
         </div>
 
         <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
-          <label for="licenseKeyInput" class="form-label" style="display:block; font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">
+          <label for="license-key-input" class="form-label" style="display:block; font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">
             Already purchased? Enter receipt email or license key:
           </label>
           <div style="display: flex; gap: 0.5rem;">
-            <input type="text" id="licenseKeyInput" class="form-control text-mono" placeholder="SOVEREIGN-KEY-..." aria-label="License key input">
-            <button type="button" class="btn btn-outline" onclick="verifyLicenseKey()">Activate</button>
+            <input type="text" id="license-key-input" class="form-control text-mono" placeholder="SHOPIFY-PRO-..." aria-label="License key input">
+            <button type="button" id="btn-activate-key" class="btn btn-outline" onclick="verifyLicenseKey()">Activate</button>
           </div>
+          <div id="license-status" style="margin-top: 0.5rem; font-size: 0.8rem;"></div>
         </div>
       </div>
     </div>
