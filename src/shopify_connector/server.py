@@ -24,6 +24,24 @@ from .seo_engine import audit_listing, calculate_margins
 from .transpiler import transpile_etsy_to_shopify
 
 
+def _default_bind_host() -> str:
+    """Bind address: localhost unless explicitly opted in via $ZOTH_BIND_HOST or
+    $HOST (IP literal only; zsh sets HOST to the hostname) or --host."""
+    import ipaddress, os
+    for var in ("ZOTH_BIND_HOST", "HOST"):
+        val = os.environ.get(var, "").strip()
+        if val == "localhost":
+            return "127.0.0.1"
+        if val:
+            try:
+                ipaddress.ip_address(val)
+                return val
+            except ValueError:
+                pass
+    return "127.0.0.1"
+
+
+
 class ShopifyCockpitHandler(BaseHTTPRequestHandler):
     """HTTP Request Handler for Shopify Connector REST API & Cockpit."""
 
@@ -279,12 +297,13 @@ class ShopifyConnectorServer(socketserver.ThreadingMixIn, HTTPServer):
                 pass
 
 
-def run_server(port: int = 8113, public_dir: Optional[str] = None) -> None:
+def run_server(port: int = 8113, public_dir: Optional[str] = None, host: Optional[str] = None) -> None:
     """Entrypoint to run the server."""
+    host = host or _default_bind_host()
     pub = public_dir or str(Path(__file__).resolve().parent.parent.parent / "public")
     client = ShopifyClient()
-    server = ShopifyConnectorServer("0.0.0.0", port, client, pub)
-    print(f"[shopify-connector] Cockpit running on http://127.0.0.1:{port}")
+    server = ShopifyConnectorServer(host, port, client, pub)
+    print(f"[shopify-connector] Cockpit running on http://{host}:{port}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
