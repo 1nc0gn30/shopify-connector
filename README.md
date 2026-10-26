@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="assets/hero-banner.svg" alt="Shopify Connector — Sovereign Architecture Banner" width="100%" />
+</div>
+
+<br />
+
 # 🛍️ Shopify Connector for Antigravity & Sovereign AI Agents
 
 > ⚡ **Live Web Application**: [https://shopify-connector.netlify.app](https://shopify-connector.netlify.app)  
