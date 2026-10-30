@@ -53,7 +53,7 @@
         "operatingSystem": "Linux, macOS, Windows",
         "offers": {
           "@type": "Offer",
-          "price": "19.00",
+          "price": "0",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
           "url": "https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X"
@@ -103,31 +103,49 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/wave.css">
   <link rel="stylesheet" href="/wave-states.css">
+
+  <!-- Zoth 100% Open-Access & Buy Us a Coffee Invariant -->
+  <script id="zoth-open-access-init">
+    (function() {
+      try {
+        var keys = ['agent_audiocipher_pro', 'agent_cyber_turtle_pro', 'agent_datamosh_pro', 'agent_nexus3d_pro', 'agent_policy_pro', 'audiocipher_license', 'audiocipher_pro_licensed', 'badge3d_pro_licensed', 'certpath_pro_key', 'certpath_pro_licensed', 'cron_rhythm_pro_key', 'cron_rhythm_pro_licensed', 'cwv-speed-engine_pro_licensed', 'cwv_pro_licensed', 'cyber_turtle_pro_licensed', 'datamosh_pro_licensed', 'deepsearch-research-agent_pro_licensed', 'deepsearch_pro_licensed', 'entropy_studio_licensed', 'envguard-secrets-vault_pro_licensed', 'envguard_pro_license', 'etsy_connector_pro', 'jwt_guard_licensed', 'mdg_pro_licensed', 'neuro_pro_licensed', 'nexus3d_pro_licensed', 'omnipost_pro_key', 'omnipost_pro_licensed', 'osint_pro_licensed', 'payload-entropy-studio_pro_licensed', 'polyglot_pro_licensed', 'pro_licensed', 'promptmaster_pro_licensed', 'promptmaster_pro_active', 'robots-txt-auditor_pro_licensed', 'robots_pro_licensed', 'schema_illustrator_pro_licensed', 'sovereign_pro_licensed', 'subsweep-lead-scanner_pro_licensed', 'subsweep_licensed', 'turtle_pro_licensed', 'ufo_sacred_licensed', 'vector-search-engine_pro_licensed', 'vector_studio_pro_licensed', 'web-security-guard_pro_licensed', 'web_security_guard_licensed', 'yourdigitalspace_pro', 'zela_guide_pro_licensed', 'zoth_ascii_magic_pro', 'zoth_audiocipher_licensed', 'zoth_badge3d_licensed', 'zoth_cyber_turtle_licensed', 'zoth_datamosh_licensed', 'zoth_etsy_licensed', 'zoth_nexus3d_licensed', 'zoth_osint_licensed', 'zoth_policy_licensed', 'zoth_sacred_licensed', 'zoth_ufo_licensed'];
+        for (var i = 0; i < keys.length; i++) {
+          localStorage.setItem(keys[i], 'true');
+        }
+        localStorage.setItem('pm_license_v2', JSON.stringify({ method: 'open_access', ref: 'free_forever', at: '2026-01-01T00:00:00Z' }));
+        window.isPro = true;
+        window.isProLicensed = true;
+      } catch (e) {}
+    })();
+  </script>
+  <style id="zoth-open-access-override">
+    .paywall-overlay, .output-paywall-overlay, #outputPaywallOverlay, #schemaPaywallOverlay,
+    #transformerPaywallOverlay, #proPaywallModal, #licenseModal, #salesBanner, #founding-offer-banner,
+    #funnelHeroBanner, [data-alias="paywallOverlay"], [data-alias="founding-offer-banner"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .paywall-wrap #outputPreview, .paywall-wrap #reportContentArea, .paywall-content,
+    .paywall-content.locked, .paywall-wrap.is-locked #outputPreview, .paywall-wrap.locked #outputPreview {
+      filter: none !important;
+      -webkit-filter: none !important;
+      user-select: auto !important;
+      pointer-events: auto !important;
+    }
+  </style>
+
 </head>
 <body>
 
+<div id="zoth-coffee-support-bar" style="background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(212,175,55,0.14)); border-bottom: 1px solid rgba(212,175,55,0.35); padding: 8px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; z-index: 9999;">
+  <span style="color: #10B981; font-weight: 800;">✦ 100% FREE &amp; OPEN ACCESS · ZERO PAYWALLS</span>
+  <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" style="background: #D4AF37; color: #08080B; padding: 4px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">☕ Buy Us a Coffee (Stripe)</a>
+  <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="if(navigator.clipboard){navigator.clipboard.writeText('GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK');this.textContent='✓ Copied GG2eQb...dXoK!';}" style="background: rgba(20,241,149,0.15); color: #14F195; border: 1px solid rgba(20,241,149,0.45); padding: 4px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">◎ Solana Tip (GG2e...dXoK)</a>
+</div>
+
+
   <div class="container">
-    
-    <!-- HIGH-CONVERTING SALES FUNNEL BANNER -->
-    <aside id="salesBanner" class="sales-banner" aria-label="Special Launch Offer">
-      <div class="sales-banner-left">
-        <span class="founding-badge">FOUNDING ACCESS</span>
-        <div class="sales-banner-text">
-          <strong>Autonomous Shopify Bridge:</strong> <span class="price-strike">$79</span> <span class="price-current">100% Free & Unlocked</span> • GraphQL mutations, Etsy transpiler, and multi-location inventory sync.
-        </div>
-      </div>
-      <div class="sales-banner-right">
-        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Purchase Pro with Stripe">
-          <span>★ ☕ Buy Us a Coffee (Stripe)</span>
-        </a>
-        <button type="button" id="btn-depay-solana" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()" aria-label="Purchase Pro with Solana">
-          <span>◎ Solana Tip</span>
-        </button>
-        <button type="button" id="btn-open-license-modal" class="btn-link" onclick="openPaywallModal('Enter License Key')" aria-label="Activate License Key">
-          Have a key? Activate
-        </button>
-      </div>
-    </aside>
 
     <!-- HEADER & STATUS -->
     <header class="header">
@@ -142,11 +160,8 @@
         <div id="storeStatus" class="status-badge">
           <span class="status-dot"></span> CONNECTING GRAPHQL...
         </div>
-        <span id="licenseBadge" class="badge-free" data-alias="pro-badge">⚡ FREE TIER</span>
+        <span id="licenseBadge" class="badge-free" style="background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid rgba(16,185,129,0.35); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">✦ 100% UNLOCKED</span>
         <span id="proStatusBadge" style="display:none;"></span>
-        <button type="button" id="btn-header-key" class="btn btn-outline" style="min-height: 32px; padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="openPaywallModal('Header Key Activation')">
-          ✦ Enter Key
-        </button>
       </div>
     </header>
 
@@ -255,7 +270,7 @@
               <div style="border-left: 1px solid var(--border-subtle); padding-left: 1.5rem;">
                 <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Gross Revenue: <strong id="outGross" class="text-mono" style="color:#FFF;">$44.95</strong></div>
                 <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Shopify Fees: <strong id="outFees" class="text-mono" style="color:var(--gold);">$1.60</strong></div>
-                <div style="font-size: 0.85rem;">Total Fulfillment Cost: <strong id="outCost" class="text-mono" style="color:var(--ruby);">$19.10</strong></div>
+                <div style="font-size: 0.85rem;">Total Fulfillment Cost: <strong id="outCost" class="text-mono" style="color:var(--ruby);">Free (100% Open Access).10</strong></div>
               </div>
             </div>
           </div>
@@ -422,72 +437,9 @@
           </button>
         </div>
 
-        <!-- Lock Overlay -->
-        <div class="paywall-overlay">
-          <div class="paywall-icon">★</div>
-          <h3 class="paywall-title">Unlock Shopify Connector Pro</h3>
-          <p class="paywall-desc">
-            Upgrade to the Founding Member Lifetime License. Unlock automated multi-location stock balancers, bulk GraphQL mutation dispatchers, unmetered catalog CSV exports, and priority MCP bridges.
-          </p>
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
-            <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary">
-              <span>★ Unlock Pro via Stripe ($19)</span>
-            </a>
-            <button type="button" id="btn-depay-paywall" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()">
-              <span>⚡ Unlock via Solana</span>
-            </button>
-            <button type="button" id="btn-unlock-paywall" class="btn btn-outline" onclick="openPaywallModal('Paywall Overlay Activation')">
-              <span>Enter License Key</span>
-            </button>
-          </div>
-        </div>
       </section>
 
     </main>
-
-    <!-- PRO PAYWALL MODAL -->
-    <div id="paywall-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" data-alias="licenseModal">
-      <div class="modal-card">
-        <button type="button" id="modal-close-btn" class="modal-close" onclick="closePaywallModal()" aria-label="Close dialog">&times;</button>
-        
-        <span class="founding-badge">PRO LICENSE</span>
-        <h3 id="modalTitle" style="font-size: 1.4rem; color: #FFF; margin: 0.75rem 0 0.25rem 0;">
-          Unlock Shopify Connector Pro
-        </h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">
-          Triggered by: <strong id="modalFeatureName" style="color: var(--emerald);">Advanced Feature</strong>
-        </p>
-
-        <ul class="matrix-list">
-          <li class="matrix-item"><span class="matrix-check">✓</span> <span>Autonomous GraphQL Admin API product mutations & catalog batching</span></li>
-          <li class="matrix-item"><span class="matrix-check">✓</span> <span>1-Click Etsy-to-Shopify transpiler matching etsy-pod-forge kits</span></li>
-          <li class="matrix-item"><span class="matrix-check">✓</span> <span>Real-time net margin & ad attribution CAC profit simulator</span></li>
-          <li class="matrix-item"><span class="matrix-check">✓</span> <span>7 Antigravity & Claude MCP tools for autonomous agents</span></li>
-          <li class="matrix-item"><span class="matrix-check">✓</span> <span>100% Python standard library — zero external pip dependencies</span></li>
-          <li class="matrix-item"><span class="matrix-check">✓</span> <span>Lifetime access, free updates & sovereign local ownership</span></li>
-        </ul>
-
-        <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap;">
-          <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1; min-width: 180px;">
-            <span>★ ☕ Buy Us a Coffee (Stripe)</span>
-          </a>
-          <button type="button" id="btn-depay-modal" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()" style="flex: 1; min-width: 180px;">
-            <span>⚡ Solana Pay ($19)</span>
-          </button>
-        </div>
-
-        <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
-          <label for="license-key-input" class="form-label" style="display:block; font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">
-            Already purchased? Enter receipt email or license key:
-          </label>
-          <div style="display: flex; gap: 0.5rem;">
-            <input type="text" id="license-key-input" class="form-control text-mono" placeholder="SHOPIFY-PRO-..." aria-label="License key input">
-            <button type="button" id="btn-activate-key" class="btn btn-outline" data-alias="btnActivateKey" onclick="verifyLicenseKey()">Activate</button>
-          </div>
-          <div id="license-status" style="margin-top: 0.5rem; font-size: 0.8rem;"></div>
-        </div>
-      </div>
-    </div>
 
     <!-- SUBTLE ATTRIBUTION FOOTER -->
     <footer class="footer">

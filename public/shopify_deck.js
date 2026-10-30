@@ -541,14 +541,9 @@ function showToast(msg) {
   }, 2600);
 }
 
-// Pro Licensing & Paywall Modal Engine
+// Pro Licensing & Paywall Modal Engine (100% Unlocked Sovereign Access)
 function isProActive() {
-  const k1 = localStorage.getItem('shopify_pro_license');
-  const k2 = localStorage.getItem('agent_shopify_pro');
-  const k3 = localStorage.getItem('zoth_shopify_licensed');
-  const k4 = localStorage.getItem('pro_licensed');
-  const param = new URLSearchParams(window.location.search).get('licensed');
-  return k1 === 'active' || k1 === 'SHOPIFY-PRO-2026' || k2 === 'SHOPIFY-PRO-2026' || k3 === 'true' || k4 === 'true' || param === 'true';
+  return true;
 }
 
 function checkProLicense() {

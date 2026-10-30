@@ -6,16 +6,35 @@
 
 # 🛍️ Shopify Connector for Antigravity & Sovereign AI Agents
 
-> ⚡ **Live Web Application**: [https://shopify-connector.netlify.app](https://shopify-connector.netlify.app)  
-> 💳 **Unlock Pro Lifetime License ($19 One-Time, $0/mo)**: **[Instant Pro Unlock via Stripe](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)** *(Use promo code `FOUNDER25` for 25% off)*  
-> 🏆 **All-Access Sovereign Pro Bundle (All 44 Tools — $49 Lifetime)**: **[Get All 44 Studios via Stripe](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)**
+> ⚡ **Live Web Application**: [https://shopify.nullai.tech](https://shopify.nullai.tech)  
+> 🏛️ **Zoth Studio Workspace**: [https://zoth.nullai.tech/tools/shopify-connector](https://zoth.nullai.tech/tools/shopify-connector)  
+> 🛡️ **Sovereign Status**: 100% Free & Open-Access · Zero Paywalls · 100% Zero-Egress Compatible
 
 [![Audit](https://img.shields.io/badge/guardrail-100%25%20passed-emerald)](https://shopify.nullai.tech)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-blue)](https://modelcontextprotocol.io)
 [![Python](https://img.shields.io/badge/python-3.10%2B-gold)](https://python.org)
 [![Zero Pip](https://img.shields.io/badge/dependencies-0%20external-purple)](https://nullai.tech)
 
-Autonomous **Shopify GraphQL Admin API** and Print-on-Demand (POD) sync engine for **Google Antigravity** AI agents. Exposes 7 Model Context Protocol (MCP) tools for catalog search, listing SEO audits, real-time fee & profit modeling across Shopify tiers, 1-click Etsy listing kit transpilation, and draft product creation.
+Autonomous **Shopify GraphQL Admin API** and Print-on-Demand (POD) multi-channel synchronization engine for **Google Antigravity** AI agents and **Zoth Studio v2 / ZothOS Linux 3.3**. Exposes 7 Model Context Protocol (MCP) tools for catalog search, listing SEO audits, real-time fee & profit modeling across Shopify tiers, 1-click Etsy listing kit transpilation, and draft product creation.
+
+---
+
+## 📖 What It Does
+
+- **Multi-Channel Catalog Sync**: Searches and synchronizes product catalogs across Shopify and POD partners with live inventory metrics and SKU tracking.
+- **Shopify Listing SEO Auditor**: Audits product titles (optimal 40–70 chars), descriptions, URL handles, and tags with a deterministic 0–100 quality scoring engine.
+- **Profit & Margin Simulator**: Calculates accurate net profit margins after subtracting Shopify payment processing fees (Basic 2.9% + 30¢, Shopify 2.7% + 30¢, Advanced 2.5% + 30¢), POD fulfillment costs, and 15% estimated ad CAC.
+- **1-Click Etsy-to-Shopify Transpiler**: Transpiles Etsy listing bundles from `etsy-pod-forge` (:8107) and `etsy-connector` (:8108) directly into production-ready Shopify GraphQL `productCreate` mutations with size/color variants.
+- **100% Free & Open-Access**: Zero paywalls, zero license locks, zero telemetry leaks.
+
+---
+
+## ⚙️ How It Works
+
+1. **Standalone Enclave (`127.0.0.1:8113`)**: Powered by `server.py` serving a dark-glassmorphic cockpit with live `/health`, `/api/info`, `/api/stats`, `/api/products`, and `/api/export` endpoints.
+2. **Zoth Studio v2 God-Mode Route**: Deeply integrated into the 71-Tool Sovereign Matrix at `/tools/shopify-connector`.
+3. **ZothOS CLI (`shopify-connector`)**: Native binary installed in `/usr/local/bin` and `~/.local/bin` for automated command-line audits and CI/CD pipelines.
+4. **Antigravity MCP Bridge**: Standard JSON-RPC 2.0 stdio server providing 7 autonomous tools for AI agents.
 
 ---
 
@@ -24,8 +43,8 @@ Autonomous **Shopify GraphQL Admin API** and Print-on-Demand (POD) sync engine f
 When registered in `~/.gemini/config/mcp_config.json`, Antigravity gains immediate access to:
 
 1. `shopify_search_products`: Catalog search by query and tag filter with inventory metrics.
-2. `shopify_audit_listing`: Title (≤70 chars), description, and tag search visibility auditor (0–100 score).
-3. `shopify_calculate_margins`: Precise net margin calculator across Basic ($39/mo), Shopify ($105/mo), and Advanced ($399/mo) plans with ad CAC modeling.
+2. `shopify_audit_listing`: Title, description, and tag search visibility auditor (0–100 score).
+3. `shopify_calculate_margins`: Precise net margin calculator across Basic, Shopify, and Advanced plans with ad CAC modeling.
 4. `shopify_transpile_etsy`: 1-click Etsy listing kit transpiler generating Shopify GraphQL `productCreate` mutations and variants.
 5. `shopify_create_draft_product`: Programmatic draft product creation via GraphQL.
 6. `shopify_get_shop_info`: Storefront profile, currency, plan, and fulfillment details.
@@ -33,62 +52,40 @@ When registered in `~/.gemini/config/mcp_config.json`, Antigravity gains immedia
 
 ---
 
-## 🚀 Quick Start
+## 💻 ZothOS CLI & Server Commands
 
-### 1. Antigravity MCP Setup
-Add to `~/.gemini/config/mcp_config.json`:
-```json
-{
-  "mcpServers": {
-    "shopify-connector": {
-      "command": "/home/zoth/NullAITech/shopify-connector/bin/shopify-connector",
-      "args": ["mcp"],
-      "env": {
-        "PYTHONPATH": "/home/zoth/NullAITech/shopify-connector/src"
-      }
-    }
-  }
-}
-```
-
-### 2. Run CLI Operations
 ```bash
-# Calculate net margins for a $42.00 botanical sweatshirt ($16.20 POD cost, $8.00 Ad CAC):
-./bin/shopify-connector profit --retail 42.00 --cost 16.20 --shipping 4.50 --plan basic --cac 8.00
+# Check status and health
+shopify-connector --status
+shopify-connector status
 
-# Audit a Shopify product title and tags:
-./bin/shopify-connector audit --title "Wildflower Botanical Oversized Sweatshirt" --tags "botanical,cottagecore,floral sweatshirt"
+# Output telemetry in JSON format
+shopify-connector --json
 
-# Transpile an Etsy listing into a Shopify GraphQL mutation:
-./bin/shopify-connector transpile --title "Cottagecore Crewneck" --tags "floral,gift" --price 45.00
+# Run an SEO audit on a product listing
+shopify-connector audit --title "Vintage Floral Cottagecore Linen Dress" --tags "dress,vintage,cottagecore,linen"
 
-# Launch Web Cockpit & REST API on port 8113:
-./bin/shopify-connector serve --port 8113
+# Calculate net profit margins for a POD product
+shopify-connector profit --retail 42.00 --pod 16.20 --shipping 4.50 --plan basic --ads
+
+# Transpile an Etsy listing into a Shopify GraphQL mutation
+shopify-connector transpile --title "Cottagecore Crewneck" --tags "floral,gift" --price 45.00
+
+# Launch standalone workstation server on port 8113
+python3 server.py --port 8113
 ```
 
 ---
 
-## 🏛️ Ecosystem Architecture & Interop
+## ☕ Support Neal Frazier Tech & NullAI
 
-- **Port**: `8113`
-- **Etsy POD Forge Bridging**: Consumes listing kits from `etsy-pod-forge` (:8107) and `etsy-connector` (:8108) and formats them into Shopify GraphQL variables with full size variant matrices.
-- **Zero Pip Invariant**: 100% Python standard library (`urllib.request`, `http.server`, `json`, `dataclasses`).
+Shopify Connector is 100% free, open-source, and sovereign software. If this tool brings you value, consider supporting our ongoing development:
+
+- **☕ Buy Us a Coffee (Stripe)**: [buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
+- **◎ Solana Tip Address**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`
 
 ---
 
-## 📜 Attribution & License
-Engineered by **Neal Frazier Tech** ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)
-
-## Network exposure
-
-The server binds to `127.0.0.1` by default. To reach it from other devices,
-opt in explicitly with `--host 0.0.0.0` (or set `ZOTH_BIND_HOST=0.0.0.0`; an IP
-in `HOST` is also honoured, a plain hostname is ignored) and only on a trusted
-network.
-
-## Safety
-
-- The browser API only accepts cross-origin requests from `localhost` / `127.0.0.1` pages. POSTs from any other website get `403`, and CORS echoes only local origins (never `*`), so a site you visit can't drive or read this local server. CLI and agent clients (no `Origin` header) are unaffected.
-- `SHOPIFY_ACCESS_TOKEN` is only sent in the `X-Shopify-Access-Token` header and never returned by any endpoint.
-- **Live writes are dry runs by default.** With a live store, `create-draft` (HTTP, MCP `shopify_create_draft_product`) returns the product and GraphQL mutation without sending them. Pass `"confirm": true`, or set `SHOPIFY_ALLOW_LIVE_WRITES=1`, to create the draft.
-- A GraphQL transport/auth failure is reported as `success: false`, never as a created product with a fabricated id.
+<div align="center">
+  <sub>Engineered by <b>Neal Frazier Tech</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
+</div>
