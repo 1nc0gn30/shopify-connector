@@ -24,7 +24,6 @@
   <meta name="twitter:image" content="https://shopify.nullai.tech/assets/banner.png">
 
   <!-- DePay Web3 Solana Widget v13 -->
-  <script src="https://integrate.depay.com/widgets/v13.js" defer></script>
   <script>
     window.addEventListener('load', function() {
       if (typeof window.DePayButtons !== 'undefined') {
@@ -57,7 +56,7 @@
           "price": "19.00",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
-          "url": "https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L"
+          "url": "https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X"
         },
         "creator": {
           "@type": "Organization",
@@ -102,6 +101,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/wave.css">
+  <link rel="stylesheet" href="/wave-states.css">
 </head>
 <body>
 
@@ -112,15 +113,15 @@
       <div class="sales-banner-left">
         <span class="founding-badge">FOUNDING ACCESS</span>
         <div class="sales-banner-text">
-          <strong>Autonomous Shopify Bridge:</strong> <span class="price-strike">$79</span> <span class="price-current">$19 Lifetime</span> • GraphQL mutations, Etsy transpiler, and multi-location inventory sync.
+          <strong>Autonomous Shopify Bridge:</strong> <span class="price-strike">$79</span> <span class="price-current">100% Free & Unlocked</span> • GraphQL mutations, Etsy transpiler, and multi-location inventory sync.
         </div>
       </div>
       <div class="sales-banner-right">
-        <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Purchase Pro with Stripe">
-          <span>★ Stripe Checkout ($19)</span>
+        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Purchase Pro with Stripe">
+          <span>★ ☕ Buy Us a Coffee (Stripe)</span>
         </a>
         <button type="button" id="btn-depay-solana" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()" aria-label="Purchase Pro with Solana">
-          <span>⚡ Solana DePay</span>
+          <span>◎ Solana Tip</span>
         </button>
         <button type="button" id="btn-open-license-modal" class="btn-link" onclick="openPaywallModal('Enter License Key')" aria-label="Activate License Key">
           Have a key? Activate
@@ -429,7 +430,7 @@
             Upgrade to the Founding Member Lifetime License. Unlock automated multi-location stock balancers, bulk GraphQL mutation dispatchers, unmetered catalog CSV exports, and priority MCP bridges.
           </p>
           <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
-            <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener" class="btn btn-primary">
+            <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary">
               <span>★ Unlock Pro via Stripe ($19)</span>
             </a>
             <button type="button" id="btn-depay-paywall" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()">
@@ -467,8 +468,8 @@
         </ul>
 
         <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap;">
-          <a href="https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1; min-width: 180px;">
-            <span>★ Stripe Checkout ($19)</span>
+          <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1; min-width: 180px;">
+            <span>★ ☕ Buy Us a Coffee (Stripe)</span>
           </a>
           <button type="button" id="btn-depay-modal" class="btn btn-solana btn-depay-trigger" onclick="triggerDePayCheckout()" style="flex: 1; min-width: 180px;">
             <span>⚡ Solana Pay ($19)</span>
