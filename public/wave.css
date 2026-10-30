@@ -1,0 +1,130 @@
+/* ==========================================================================
+   SHOPIFY CONNECTOR — WAVE REFINEMENTS (wave.css)
+   Type Hierarchy, Visible Focus & Respectful Motion
+   ========================================================================== */
+
+/* 1. Clearer Type Hierarchy */
+h1.brand-title {
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.brand-version {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h2.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+}
+
+.card-title-icon {
+  font-size: 0.9em;
+  vertical-align: middle;
+}
+
+.metric-sub {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.gauge-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-main);
+}
+
+.data-table th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* 2. Visible Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-solana:focus-visible,
+.btn-outline:focus-visible,
+.btn-link:focus-visible,
+.preset-btn:focus-visible,
+.modal-close:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.28);
+}
+
+.form-control:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 1px;
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+/* 3. Short Transform/Opacity Motion on Result Area */
+@keyframes resultAreaEntrance {
+  0% {
+    opacity: 0.82;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#transpilerOutput {
+  animation: resultAreaEntrance 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* 4. Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  #transpilerOutput {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .status-dot {
+    animation: none !important;
+  }
+
+  .btn,
+  .btn-primary,
+  .btn-solana,
+  .btn-outline,
+  .form-control,
+  .modal-backdrop,
+  .paywall-blurred {
+    transition: none !important;
+    transform: none !important;
+  }
+}
