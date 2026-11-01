@@ -1,7 +1,7 @@
 """REST API & Glassmorphic Cockpit Server for Shopify Connector.
 
 Serves on Port 8113 with zero external pip dependencies (100% Python standard library).
-Engineered by Neal Frazier Tech (@1nc0gn30) • NullAI Platform.
+Engineered by 1nc0gn30 (@1nc0gn30) • NullAI Platform.
 """
 
 from __future__ import annotations

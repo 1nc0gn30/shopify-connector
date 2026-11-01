@@ -1,6 +1,6 @@
 """Command Line Interface for Shopify Connector.
 
-Engineered by Neal Frazier Tech (@1nc0gn30) • NullAI Platform.
+Engineered by 1nc0gn30 (@1nc0gn30) • NullAI Platform.
 100% Python Standard Library — Zero External Dependencies.
 """
 
@@ -51,7 +51,7 @@ C_RESET = "\033[0m"
 def print_banner() -> None:
     print(f"{C_GOLD}{C_BOLD}🛍️ SHOPIFY CONNECTOR v2.5.0{C_RESET}")
     print(f"{C_DIM}Shopify GraphQL Admin API & POD Multi-Channel Sync Engine{C_RESET}")
-    print(f"{C_DIM}Engineered by Neal Frazier Tech (@1nc0gn30) • NullAI Platform{C_RESET}\n")
+    print(f"{C_DIM}Engineered by 1nc0gn30 (@1nc0gn30) • NullAI Platform{C_RESET}\n")
 
 
 def cmd_status(host: str = "127.0.0.1", port: int = 8113, as_json: bool = False) -> int:
@@ -132,7 +132,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     profit_p.add_argument("--pod", type=float, required=True, help="POD base cost in USD")
     profit_p.add_argument("--shipping", type=float, default=0.0, help="Shipping charged to customer")
     profit_p.add_argument("--plan", choices=["basic", "shopify", "advanced"], default="basic", help="Shopify plan")
-    profit_p.add_argument("--ads", action="store_true", help="Include 15% estimated ad conversion CAC")
+    profit_p.add_argument("--ads", action="store_true", help="Include 15%% estimated ad conversion CAC")
     profit_p.add_argument("--json", action="store_true", help="Output margin report as JSON")
 
     # Command: transpile

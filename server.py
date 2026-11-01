@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Root launcher for Shopify Connector server.
 
-Engineered by Neal Frazier Tech (@1nc0gn30) • NullAI Platform.
+Engineered by 1nc0gn30 (@1nc0gn30) • NullAI Platform.
 """
 
 from __future__ import annotations

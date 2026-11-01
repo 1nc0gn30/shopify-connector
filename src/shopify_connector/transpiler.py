@@ -3,7 +3,7 @@
 Converts Etsy listing kits (from etsy-pod-forge or etsy-connector) into
 production-ready Shopify GraphQL mutations and REST payloads.
 
-Engineered by Neal Frazier Tech (@1nc0gn30) • NullAI Platform.
+Engineered by 1nc0gn30 (@1nc0gn30) • NullAI Platform.
 100% Python Standard Library — Zero External Dependencies.
 """
 

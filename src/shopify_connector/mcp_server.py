@@ -1,7 +1,7 @@
 """Shopify MCP Server (Model Context Protocol).
 
 Provides standard JSON-RPC 2.0 stdio interface for Antigravity, Claude, and AI Agents.
-Engineered by Neal Frazier Tech (@1nc0gn30) • NullAI Platform.
+Engineered by 1nc0gn30 (@1nc0gn30) • NullAI Platform.
 100% Python Standard Library — Zero External Dependencies.
 """
 

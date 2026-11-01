@@ -7,7 +7,7 @@
 h1.brand-title {
   letter-spacing: -0.03em;
   font-weight: 800;
-  color: #FFFFFF;
+  color: var(--text-main);
 }
 
 .brand-version {
@@ -21,7 +21,7 @@ h2.card-title {
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.015em;
-  color: #FFFFFF;
+  color: var(--text-main);
 }
 
 .card-title-icon {

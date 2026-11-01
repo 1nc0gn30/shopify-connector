@@ -23,23 +23,6 @@
   <meta name="twitter:description" content="Unified storefront sync, product schema generator, and Antigravity MCP suite for Shopify stores. 100% Python standard library.">
   <meta name="twitter:image" content="https://shopify.nullai.tech/assets/banner.png">
 
-  <!-- DePay Web3 Solana Widget v13 -->
-  <script>
-    window.addEventListener('load', function() {
-      if (typeof window.DePayButtons !== 'undefined') {
-        window.DePayButtons.init({
-          selector: '.btn-depay-trigger',
-          integration: '428790dd-7ad1-407c-8ecf-c048c77a4cb8',
-          payload: {
-            receiver: 'GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK',
-            amount: 19.00,
-            currency: 'USD'
-          }
-        });
-      }
-    });
-  </script>
-
   <!-- AEO & SEO Schema.org Graph -->
   <script type="application/ld+json">
   {
@@ -60,7 +43,7 @@
         },
         "creator": {
           "@type": "Organization",
-          "name": "Neal Frazier Tech",
+          "name": "1nc0gn30 • NullAI",
           "url": "https://nullai.tech"
         }
       },
@@ -161,7 +144,7 @@
           <span class="status-dot"></span> CONNECTING GRAPHQL...
         </div>
         <span id="licenseBadge" class="badge-free" style="background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid rgba(16,185,129,0.35); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">✦ 100% UNLOCKED</span>
-        <span id="proStatusBadge" style="display:none;"></span>
+        <button type="button" id="themeToggleBtn" class="btn btn-outline" style="min-height: 32px; padding: 0.25rem 0.65rem; font-size: 0.75rem;" onclick="const h=document.documentElement;const isLight=h.getAttribute('data-theme')==='light';h.setAttribute('data-theme',isLight?'dark':'light');this.textContent=isLight?'☀️ Light Mode':'🌙 Dark Mode';">☀️ Light Mode</button>
       </div>
     </header>
 
@@ -268,9 +251,9 @@
                 <div id="outMargin" class="gauge-val">57.5%</div>
               </div>
               <div style="border-left: 1px solid var(--border-subtle); padding-left: 1.5rem;">
-                <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Gross Revenue: <strong id="outGross" class="text-mono" style="color:#FFF;">$44.95</strong></div>
+                <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Gross Revenue: <strong id="outGross" class="text-mono" style="color:var(--text-main);">$44.95</strong></div>
                 <div style="font-size: 0.85rem; margin-bottom: 0.4rem;">Shopify Fees: <strong id="outFees" class="text-mono" style="color:var(--gold);">$1.60</strong></div>
-                <div style="font-size: 0.85rem;">Total Fulfillment Cost: <strong id="outCost" class="text-mono" style="color:var(--ruby);">Free (100% Open Access).10</strong></div>
+                <div style="font-size: 0.85rem;">Total Fulfillment Cost: <strong id="outCost" class="text-mono" style="color:var(--ruby);">$0.10</strong></div>
               </div>
             </div>
           </div>
@@ -330,8 +313,8 @@
           <div class="col-6">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
               <label class="form-label" style="margin-bottom: 0;">Transpiled Shopify GraphQL Mutation Preview:</label>
-              <button type="button" id="btn-copy-transpile" class="btn btn-outline" style="min-height: 30px; padding: 0.2rem 0.6rem; font-size: 0.75rem;" onclick="triggerProAction('copy_transpile')">
-                ✦ Copy GraphQL (Pro)
+              <button type="button" id="btn-copy-transpile" class="btn btn-outline" style="min-height: 30px; padding: 0.2rem 0.6rem; font-size: 0.75rem;" onclick="copyTranspiledGraphQL()">
+                ✦ Copy GraphQL
               </button>
             </div>
             <pre id="transpilerOutput" class="stream-box" style="height: 310px; color: #10B981; white-space: pre-wrap;">Select a preset or click Transpile to inspect generated Shopify productCreate mutation...</pre>
@@ -349,8 +332,8 @@
               <span class="card-title-icon">✦</span> Store Catalog & Live Inventory
             </h2>
             <div style="display: flex; gap: 0.5rem;">
-              <button type="button" id="btn-export-catalog" class="btn btn-outline" style="min-height: 34px; padding: 0.3rem 0.75rem; font-size: 0.78rem;" onclick="triggerProAction('export_catalog')">
-                ↓ Export CSV (Pro)
+              <button type="button" id="btn-export-catalog" class="btn btn-outline" style="min-height: 34px; padding: 0.3rem 0.75rem; font-size: 0.78rem;" onclick="exportCatalogCSV()">
+                ↓ Export CSV
               </button>
             </div>
           </div>
@@ -401,17 +384,16 @@
 
       </div>
 
-      <!-- FROSTED GLASS BLUR PAYWALL (Pro Bulk Mutations & Webhooks) -->
-      <section class="card col-12 paywall-wrapper" aria-labelledby="proTitle" style="margin-top: 1rem;">
+      <!-- MULTI-LOCATION INVENTORY SYNC & WEBHOOK ENGINE -->
+      <section class="card col-12" aria-labelledby="proTitle" style="margin-top: 1rem;">
         <div class="card-header">
           <h2 id="proTitle" class="card-title">
             <span>★ Automated Multi-Location Inventory Sync & Webhook Engine</span>
           </h2>
-          <span class="founding-badge">PRO SUITE</span>
+          <span class="founding-badge">SOVEREIGN SUITE</span>
         </div>
 
-        <!-- Blurred Content -->
-        <div class="paywall-blurred">
+        <div>
           <div class="pro-features-grid">
             <div style="background: var(--bg-card-subtle); padding: 1.25rem; border-radius: 10px; border: 1px solid var(--border-subtle);">
               <div style="font-weight: 700; color: var(--emerald);">Multi-Location Inventory Watcher</div>
@@ -432,7 +414,7 @@
               </div>
             </div>
           </div>
-          <button type="button" id="btn-export-bundle" class="btn btn-primary" onclick="triggerProAction('export_bundle')">
+          <button type="button" id="btn-export-bundle" class="btn btn-primary" onclick="exportStorefrontBundle()">
             Download Complete Shopify Storefront Bundle
           </button>
         </div>
@@ -444,7 +426,7 @@
     <!-- SUBTLE ATTRIBUTION FOOTER -->
     <footer class="footer">
       <div>
-        Engineered by <strong>Neal Frazier Tech</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
+        Engineered by <strong>1nc0gn30 • NullAI</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
       </div>
       <div style="margin-top: 0.5rem; font-size: 0.78rem;">
         <a href="https://github.com/1nc0gn30/shopify-connector" target="_blank" rel="noopener">GitHub Repository</a> • Port 8113 (Shopify Connector Cockpit & GraphQL Bridge)
@@ -454,5 +436,6 @@
   </div>
 
   <script src="/shopify_deck.js"></script>
+  <script src="/assets/sovereign-upgrade.js" defer></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /**
  * SHOPIFY CONNECTOR — Autonomous Interactive Cockpit & Margin Engine
- * Neal Frazier Tech (@1nc0gn30) • NullAI Platform
+ * 1nc0gn30 (@1nc0gn30) • NullAI Platform
  * 100% Client-Side In-Browser Execution & Resilient Static Netlify Fallbacks
  */
 
@@ -107,40 +107,6 @@ function setupEventListeners() {
       searchProducts(e.target.value);
     }, 250));
   }
-
-  // Key Activation Button
-  const btnActivate = document.getElementById('btn-activate-key');
-  if (btnActivate) {
-    btnActivate.addEventListener('click', () => verifyLicenseKey());
-  }
-
-  // License Key Input Enter
-  const keyInput = document.getElementById('license-key-input') || document.getElementById('licenseKeyInput');
-  if (keyInput) {
-    keyInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        verifyLicenseKey();
-      }
-    });
-  }
-
-  // Modal Backdrop click to close
-  const modal = document.getElementById('paywall-modal') || document.getElementById('paywallModal');
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closePaywallModal();
-      }
-    });
-  }
-
-  // Escape key to close modal
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closePaywallModal();
-    }
-  });
 }
 
 // Initial Data Load
@@ -273,7 +239,7 @@ function renderProductsTable(items) {
     return `
       <tr>
         <td>
-          <strong style="color: #FFF;">${escapeHtml(p.title)}</strong>
+          <strong style="color: var(--text-main);">${escapeHtml(p.title)}</strong>
           <div style="font-size:0.75rem; color:var(--text-dim); font-family:var(--font-mono);">handle: /products/${escapeHtml(p.handle)}</div>
         </td>
         <td><span class="badge-status ${statusClass}">${escapeHtml(p.status)}</span></td>
@@ -541,83 +507,29 @@ function showToast(msg) {
   }, 2600);
 }
 
-// Pro Licensing & Paywall Modal Engine (100% Unlocked Sovereign Access)
+// 100% Open-Access Sovereign Engine
 function isProActive() {
   return true;
 }
 
 function checkProLicense() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('licensed') === 'true' || params.get('session_id') || params.get('pro') === 'true') {
-    localStorage.setItem('shopify_pro_license', 'SHOPIFY-PRO-2026');
-    localStorage.setItem('agent_shopify_pro', 'SHOPIFY-PRO-2026');
-    localStorage.setItem('zoth_shopify_licensed', 'true');
-    localStorage.setItem('pro_licensed', 'true');
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }
-
-  if (isProActive()) {
-    activateProState();
-  }
+  activateProState();
 }
 
 function activateProState() {
-  localStorage.setItem('shopify_pro_license', 'SHOPIFY-PRO-2026');
-  localStorage.setItem('agent_shopify_pro', 'SHOPIFY-PRO-2026');
-  localStorage.setItem('zoth_shopify_licensed', 'true');
-  localStorage.setItem('pro_licensed', 'true');
-
-  document.body.classList.add('pro-licensed', 'pro-unlocked', 'licensed');
-  document.querySelectorAll('.paywall-wrapper').forEach(el => el.classList.add('pro-unlocked'));
-
   const badge = document.getElementById('licenseBadge') || document.getElementById('pro-badge');
   if (badge) {
-    badge.textContent = '⭐ PRO ACTIVE';
-    badge.classList.remove('badge-free');
-    badge.classList.add('badge-pro');
+    badge.textContent = '✦ 100% UNLOCKED';
   }
-  const badgeOld = document.getElementById('proStatusBadge');
-  if (badgeOld) {
-    badgeOld.textContent = '⭐ PRO ACTIVE';
-    badgeOld.style.display = 'inline-flex';
-    badgeOld.style.background = 'linear-gradient(135deg, #10B981 0%, #008060 100%)';
-    badgeOld.style.color = '#08080B';
-    badgeOld.style.borderColor = '#10B981';
-  }
-
-  const sb = document.getElementById('salesBanner');
-  if (sb) sb.style.display = 'none';
-
-  closePaywallModal();
-  showToast('⭐ Sovereign Pro License Active — All Features Unlocked!');
 }
 
-window.activateLicenseKey = function(key) {
-  if (!key) key = 'SHOPIFY-PRO-2026';
-  localStorage.setItem('shopify_pro_license', key);
-  localStorage.setItem('agent_shopify_pro', key);
-  localStorage.setItem('zoth_shopify_licensed', 'true');
-  localStorage.setItem('pro_licensed', 'true');
-  activateProState();
-  return true;
-};
-
 function triggerProAction(featureName) {
-  if (!isProActive()) {
-    openPaywallModal(featureName);
-    return false;
-  }
-
   if (featureName === 'copy_transpile') {
     copyTranspiledGraphQL();
   } else if (featureName === 'export_catalog') {
     exportCatalogCSV();
   } else if (featureName === 'export_bundle') {
     exportStorefrontBundle();
-  } else {
-    showToast(`[PRO ACTIVE] Executing: ${featureName}`);
   }
   return true;
 }
@@ -684,7 +596,7 @@ function exportStorefrontBundle() {
     storefront: "Botanical Apparel Co.",
     exported_at: new Date().toISOString(),
     generator: "Shopify Connector Pro Engine v2.5.0",
-    attribution: "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
+    attribution: "1nc0gn30 (@1nc0gn30) • NullAI Platform",
     products: (products && products.length > 0) ? products : DEFAULT_PRODUCTS,
     webhooks: [
       { topic: "ORDERS_PAID", target: "https://api.printify.com/v1/orders/webhook" },
@@ -706,60 +618,6 @@ function exportStorefrontBundle() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-}
-
-function openPaywallModal(featureName) {
-  const modal = document.getElementById('paywall-modal') || document.getElementById('paywallModal');
-  const label = document.getElementById('modalFeatureName');
-  const status = document.getElementById('license-status');
-  if (label && featureName) label.textContent = featureName;
-  if (status) status.innerHTML = '';
-  if (modal) {
-    modal.classList.add('open', 'is-open');
-  }
-}
-
-function closePaywallModal() {
-  const modal = document.getElementById('paywall-modal') || document.getElementById('paywallModal');
-  if (modal) {
-    modal.classList.remove('open', 'is-open');
-  }
-}
-
-function verifyLicenseKey(keyVal) {
-  const input = document.getElementById('license-key-input') || document.getElementById('licenseKeyInput');
-  const val = keyVal || (input ? input.value.trim() : '');
-  const status = document.getElementById('license-status');
-
-  if (!val || val.length < 5) {
-    if (status) {
-      status.innerHTML = '<span style="color:var(--ruby)">Please enter a valid license key or receipt email.</span>';
-    }
-    showToast('Please enter your license key or receipt email.');
-    return;
-  }
-
-  localStorage.setItem('shopify_pro_license', val);
-  localStorage.setItem('agent_shopify_pro', val);
-  localStorage.setItem('zoth_shopify_licensed', 'true');
-  localStorage.setItem('pro_licensed', 'true');
-  activateProState();
-
-  if (status) {
-    status.innerHTML = '<span style="color:var(--emerald)">⭐ Pro License activated! All GraphQL bulk mutations and catalog exports are unlocked.</span>';
-  }
-  showToast('⭐ Pro License activated! All GraphQL bulk mutations & exports unlocked.');
-}
-
-function triggerDePayCheckout() {
-  if (typeof window.DePayButtons !== 'undefined') {
-    return;
-  }
-  const receiver = "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK";
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(receiver).catch(() => {});
-  }
-  showToast(`DePay Solana: Send $19 to ${receiver}`);
 }
 
 // Helpers

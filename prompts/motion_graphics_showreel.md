@@ -33,10 +33,10 @@
 - **SFX / Procedural Audio**: Deep metallic servo lock sound followed by rapid terminal keystroke ticks.
 
 ### [00:11 - 00:15] Scene 4: The Sovereign Treasury Call-to-Action (Frames 330 - 450)
-- **Visual**: Camera pulls back. The *Emerald Hexagon Crucible* forms a golden seal around the central title card. Dual payment badges flare with pure CSS conic border beams: Stripe ($19 Lifetime Founding Access) + Solana Tip.
+- **Visual**: Camera pulls back. The *Emerald Hexagon Crucible* forms a golden seal around the central title card. Dual payment badges flare with pure CSS conic border beams: Stripe ($0 Lifetime Founding Access) + Solana Tip.
 - **Copy**:
   - Main Title: `SHOPIFY CONNECTOR`
   - Tagline: `Autonomous GraphQL Admin API & POD Engine`
-  - Pricing: `FOUNDING LIFETIME: $19 (REGULAR $79)`
-  - URL: `shopify.nullai.tech • Engineered by Neal Frazier Tech (@1nc0gn30)`
+  - Pricing: `OPEN-ACCESS SOVEREIGN: $0 (REGULAR $0)`
+  - URL: `shopify.nullai.tech • Engineered by 1nc0gn30 (@1nc0gn30)`
 - **SFX / Procedural Audio**: Orchestral sub-drop, bright resolve chime, and smooth vinyl taper.
