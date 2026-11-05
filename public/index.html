@@ -436,6 +436,22 @@
   </div>
 
   <script src="/shopify_deck.js"></script>
-  <script src="/assets/sovereign-upgrade.js" defer></script>
+  
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "shopify-connector",
+          toolName: "Shopify Connector",
+          tagline: "High-velocity product catalog management and draft listing creator for Shopify!",
+          accentColor: "#10B981",
+          steps: [{"icon": "\ud83d\udecd\ufe0f", "title": "Shopify Store Automation", "desc": "Search live inventory, audit product tags, and calculate profit margins across your Shopify catalog."}, {"icon": "\ud83d\udcdd", "title": "Transpile from Etsy to Shopify", "desc": "Seamlessly convert Etsy listing payloads into Shopify format with optimized SEO handles."}, {"icon": "\u26a1", "title": "Instant Draft Products", "desc": "Push polished draft products directly to your Shopify store without manual web clicking."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
