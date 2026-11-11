@@ -507,19 +507,11 @@ function showToast(msg) {
   }, 2600);
 }
 
-// 100% Open-Access Sovereign Engine
-function isProActive() {
-  return true;
-}
-
+// Open-Source Export & Copy Actions
 function checkProLicense() {
-  activateProState();
-}
-
-function activateProState() {
-  const badge = document.getElementById('licenseBadge') || document.getElementById('pro-badge');
+  const badge = document.getElementById('licenseBadge');
   if (badge) {
-    badge.textContent = '✦ 100% UNLOCKED';
+    badge.textContent = '✦ OPEN SOURCE';
   }
 }
 

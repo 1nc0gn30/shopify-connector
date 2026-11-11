@@ -122,8 +122,7 @@ textarea:focus-visible,
   .btn-solana,
   .btn-outline,
   .form-control,
-  .modal-backdrop,
-  .paywall-blurred {
+  .modal-backdrop {
     transition: none !important;
     transform: none !important;
   }

@@ -6,11 +6,16 @@ build-backend = "setuptools.build_meta"
 name = "shopify-connector"
 version = "1.0.0"
 description = "Autonomous Shopify GraphQL Admin API & Print-on-Demand E-Commerce Engine for Antigravity & AI Agents."
-authors = [{ name = "1nc0gn30 • NullAI", email = "contact@nullai.tech" }]
+authors = [{ name = "1nc0gn30", email = "hello@nullai.tech" }]
 license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
+
+[project.urls]
+Homepage = "https://zoth.nullai.tech/tools/shopify-connector"
+Repository = "https://github.com/1nc0gn30/shopify-connector"
+Documentation = "https://nullai.tech"
 
 [project.scripts]
 shopify-connector = "shopify_connector.cli:main"
