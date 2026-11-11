@@ -89,7 +89,7 @@ SIMULATED_PRODUCTS: List[Dict[str, Any]] = [
         "status": "DRAFT",
         "vendor": "YourDigitalSpace",
         "productType": "Art & Wall Decor",
-        "tags": ["wall art", "canvas wrap", "watercolor", "coastal marsh", "virginia beach", "cottage decor"],
+        "tags": ["wall art", "canvas wrap", "watercolor", "coastal marsh", "cottage decor"],
         "totalInventory": 45,
         "variants": [
             {"id": "gid://shopify/ProductVariant/819230", "title": "16x20 / 1.25in Stretched", "price": "68.00", "sku": "YDS-ART-1620-STR", "inventoryQuantity": 45}
