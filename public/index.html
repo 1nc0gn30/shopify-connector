@@ -29,7 +29,7 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "SoftwareApplication",
+        "@type": ["WebApplication", "SoftwareApplication"],
         "name": "Shopify Connector",
         "url": "https://shopify.nullai.tech/",
         "applicationCategory": "BusinessApplication",
@@ -41,9 +41,21 @@
           "availability": "https://schema.org/InStock",
           "url": "https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X"
         },
+        "author": {
+          "@type": "Person",
+          "name": "Neal Frazier",
+          "alternateName": "1nc0gn30",
+          "url": "https://nealfrazier.tech",
+          "sameAs": "https://github.com/1nc0gn30"
+        },
         "creator": {
           "@type": "Organization",
-          "name": "1nc0gn30 • NullAI",
+          "name": "Neal Frazier Tech",
+          "url": "https://nullai.tech"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
           "url": "https://nullai.tech"
         }
       },
@@ -73,6 +85,14 @@
               "@type": "Answer",
               "text": "No. The entire engine is built 100% on the Python 3.10+ standard library with zero external pip dependencies. It runs completely locally on port 8113 with zero telemetry leaks."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Shopify Connector free with zero paywalls?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every GraphQL tool, Etsy transpiler, profit calculator, and MCP endpoint is 100% open-access with zero paywalls. Optional support is available via Buy Us a Coffee on Stripe or Solana tip address GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK."
+            }
           }
         ]
       }
@@ -92,6 +112,7 @@
 <div id="zoth-coffee-support-bar" style="background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(212,175,55,0.14)); border-bottom: 1px solid rgba(212,175,55,0.35); padding: 8px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; z-index: 9999;">
   <span style="color: #10B981; font-weight: 800;">✦ 100% FREE &amp; OPEN-SOURCE WORKSTATION</span>
   <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" style="background: #D4AF37; color: #08080B; padding: 4px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">☕ Buy Us a Coffee (Stripe)</a>
+  <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" title="Solana Tip Address: GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" onclick="if(navigator.clipboard){navigator.clipboard.writeText('GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK');this.textContent='✓ Copied GG2e…dXoK!';}" style="background: #047857; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.28); padding: 4px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">◎ Solana Tip: GG2e…dXoK</a>
 </div>
 
 
@@ -393,7 +414,7 @@
     <!-- SUBTLE ATTRIBUTION FOOTER -->
     <footer class="footer">
       <div>
-        Engineered by <strong>1nc0gn30 • NullAI</strong> (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
+        Engineered by <strong>Neal Frazier Tech</strong> (<a href="https://github.com/1nc0gn30/shopify-connector" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
       </div>
       <div style="margin-top: 0.5rem; font-size: 0.78rem;">
         <a href="https://github.com/1nc0gn30/shopify-connector" target="_blank" rel="noopener">GitHub Repository</a> • Port 8113 (Shopify Connector Cockpit & GraphQL Bridge)

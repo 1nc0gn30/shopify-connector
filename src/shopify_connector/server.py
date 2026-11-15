@@ -87,7 +87,7 @@ class ShopifyCockpitHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("X-Frame-Options", "SAMEORIGIN")
+        self.send_header("Content-Security-Policy", "frame-ancestors 'self' http://127.0.0.1:* http://localhost:* https://zoth.nullai.tech;")
 
     def _send_json(self, data: Any, status: int = 200) -> None:
         payload = json.dumps(data, indent=2).encode("utf-8")
