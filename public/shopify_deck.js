@@ -61,7 +61,6 @@ const DEFAULT_PRODUCTS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  checkProLicense();
   setupEventListeners();
   loadInitialData();
   startSSE();
@@ -508,24 +507,6 @@ function showToast(msg) {
 }
 
 // Open-Source Export & Copy Actions
-function checkProLicense() {
-  const badge = document.getElementById('licenseBadge');
-  if (badge) {
-    badge.textContent = '✦ OPEN SOURCE';
-  }
-}
-
-function triggerProAction(featureName) {
-  if (featureName === 'copy_transpile') {
-    copyTranspiledGraphQL();
-  } else if (featureName === 'export_catalog') {
-    exportCatalogCSV();
-  } else if (featureName === 'export_bundle') {
-    exportStorefrontBundle();
-  }
-  return true;
-}
-
 function copyTranspiledGraphQL() {
   const outBox = document.getElementById('transpilerOutput');
   const btn = document.getElementById('btn-copy-transpile');

@@ -300,20 +300,6 @@ body::before {
   align-items: center;
 }
 
-.badge-pro {
-  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
-  color: #08080B;
-  border: 1px solid var(--emerald);
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  display: inline-flex;
-  align-items: center;
-  box-shadow: 0 0 12px var(--emerald-glow);
-}
-
 .status-badge {
   display: inline-flex;
   align-items: center;

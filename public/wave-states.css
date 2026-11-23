@@ -40,8 +40,7 @@ textarea:focus-visible,
 }
 
 .form-control:focus-visible,
-#catalogSearch:focus-visible,
-#license-key-input:focus-visible {
+#catalogSearch:focus-visible {
   outline: 2px solid var(--emerald);
   outline-offset: 1px;
   border-color: var(--emerald);
@@ -155,14 +154,6 @@ input[type="checkbox"]:focus-visible {
   font-size: 0.78rem;
 }
 
-#license-status:empty {
-  display: none;
-}
-
-#proStatusBadge:empty {
-  display: none;
-}
-
 /* 4. ERROR PRESENTATION */
 .form-control:invalid,
 .form-control:user-invalid,
@@ -184,17 +175,6 @@ input[type="checkbox"]:focus-visible {
   outline-offset: 1px;
   border-color: var(--ruby);
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.28);
-}
-
-#license-status:not(:empty) {
-  display: block;
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: 6px;
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--border-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
 }
 
 /* 5. PREFERS-REDUCED-MOTION */
