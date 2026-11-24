@@ -512,15 +512,23 @@ function copyTranspiledGraphQL() {
   const btn = document.getElementById('btn-copy-transpile');
   const text = outBox ? outBox.textContent : '';
 
-  if (!navigator.clipboard) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
+  const fallbackCopy = () => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (_) { /* ignore clipboard fallback errors */ }
+  };
+
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    navigator.clipboard.writeText(text).catch(fallbackCopy);
   } else {
-    navigator.clipboard.writeText(text);
+    fallbackCopy();
   }
 
   if (btn) {
